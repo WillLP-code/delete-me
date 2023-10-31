@@ -59,9 +59,13 @@ def f(df, col_1, col_2):
     df = pd.concat([temp_df, none_df]).sort_index()
     return df[col_2]
 
-df[2] = f(df, 1, 2)
-df[3] = f(df, 2, 3)
-df[4] = f(df, 3, 4)
-df[5] = f(df, 4, 5)
+# df[2] = f(df, 1, 2)
+# df[3] = f(df, 2, 3)
+# df[4] = f(df, 3, 4)
+# df[5] = f(df, 4, 5)
+
+for i in range(len(months)):
+    if i > 1:
+        df[i] = f(df, i-1, i)
 
 print(df)
