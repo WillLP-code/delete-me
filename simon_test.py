@@ -1,42 +1,38 @@
 import pandas as pd
 pd.options.mode.chained_assignment = None
 
-df = pd.DataFrame([{1:1,
-                    2:1,
-                    3:1,
-                    4:1,
-                    5:1},
-                    {1:0,
-                    2:1,
-                    3:1,
-                    4:1,
-                    5:1},
-                    {1:0,
-                    2:0,
-                    3:1,
-                    4:1,
-                    5:1},
-                    {1:0,
-                    2:0,
-                    3:0,
-                    4:1,
-                    5:1},
-                    {1:0,
-                    2:0,
-                    3:0,
-                    4:0,
-                    5:1},
-                    {1:0,
-                    2:0,
-                    3:0,
-                    4:0,
-                    5:0},
-                    {1:0,
-                    2:1,
-                    3:1,
-                    4:1,
-                    5:0},
+df = pd.DataFrame([{'jan':1,
+                    'feb':1,
+                    'mar':1,
+                    'apr':1,
+                    'may':1},
+                    {'jan':0,
+                    'feb':1,
+                    'mar':1,
+                    'apr':1,
+                    'may':1},
+                    {'jan':0,
+                    'feb':0,
+                    'mar':1,
+                    'apr':1,
+                    'may':1},
+                    {'jan':0,
+                    'feb':0,
+                    'mar':0,
+                    'apr':1,
+                    'may':1},
+                    {'jan':0,
+                    'feb':0,
+                    'mar':0,
+                    'apr':0,
+                    'may':1},
+                    {'jan':0,
+                    'feb':1,
+                    'mar':1,
+                    'apr':1,
+                    'may':0},
                     ])
+
 
 df.iloc[:,0] = df.iloc[:,0].apply(lambda x: 'existing' if x == 1 else 'none')
 
@@ -65,7 +61,7 @@ def f(df, col_1, col_2):
 # df[5] = f(df, 4, 5)
 
 for i in range(len(months)):
-    if i > 1:
-        df[i] = f(df, i-1, i)
+    if i > 0:
+        df[months[i]] = f(df, months[i-1], months[i])
 
 print(df)
